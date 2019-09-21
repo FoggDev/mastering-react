@@ -1,7 +1,10 @@
 import React from 'react';
 
 // Components
-import Todo from './components/Todo';
+// import Todo from './components/Todo';
+// import Coins from './components/Coins';
+// import Numbers from './components/Numbers';
+import Xss from './components/Xss';
 
 // Shared Components
 import Header from './shared/components/layout/Header';
@@ -16,7 +19,7 @@ function App() {
       <Header />
 
       <Content>
-        <Todo />
+        <Xss />
       </Content>
 
       <Footer />
