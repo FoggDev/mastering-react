@@ -1,8 +1,7 @@
 import React from 'react';
 
 // Components
-import Home from './components/Home/';
-import Hello from './components/Hello/';
+import Todo from './components/Todo';
 
 // Shared Components
 import Header from './shared/components/layout/Header';
@@ -17,8 +16,7 @@ function App() {
       <Header />
 
       <Content>
-        <Home />
-        <Hello name="Carlos" age={31} />
+        <Todo />
       </Content>
 
       <Footer />
