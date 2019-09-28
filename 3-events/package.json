@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js src",
-    "pre-push": "npm run lint"
+    "prepush": "npm run lint"
   },
   "browserslist": {
     "production": [
