@@ -11,6 +11,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.2",
     "serialize-javascript": "^2.1.0",
     "uuid": "^3.3.3"
@@ -21,7 +23,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js src",
-    "prepush": "npm run lint && npm run test"
+    "prepush": "npm run lint && npm run test",
+    "postmerge": "npm install",
+    "postrewrite": "npm install"
   },
   "browserslist": {
     "production": [

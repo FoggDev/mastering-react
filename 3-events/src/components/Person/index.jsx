@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import './Person.css';
 
 // onChange, onSubmit, onClick, onKeyDown, onKeyPress, onKeyUp
@@ -58,53 +59,61 @@ class Person extends Component {
     } = this.state;
 
     return (
-      <div className="Person">
-        <form onSubmit={this.handleOnSubmit}>
-          <div>
-            <p><strong>First name:</strong></p>
+      <>
+        <Helmet>
+          <title>Personal Information 22222</title>
+          <meta name="title" content="Personal Information" />
+          <meta name="description" content="This component save personal Information" />
+        </Helmet>
+
+        <div className="Person">
+          <form onSubmit={this.handleOnSubmit}>
             <div>
-              <input
-                name="firstName"
-                type="text"
-                value={firstName}
-                onChange={this.handleOnChange}
-                className={errors.firstName ? 'error' : ''}
-              />
+              <p><strong>First name:</strong></p>
+              <div>
+                <input
+                  name="firstName"
+                  type="text"
+                  value={firstName}
+                  onChange={this.handleOnChange}
+                  className={errors.firstName ? 'error' : ''}
+                />
 
-              {errors.firstName && <p className="errorMessage">Required field</p>}
+                {errors.firstName && <p className="errorMessage">Required field</p>}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <p><strong>Last name:</strong></p>
+            <div>
+              <p><strong>Last name:</strong></p>
+              <p>
+                <input
+                  name="lastName"
+                  type="text"
+                  value={lastName}
+                  onChange={this.handleOnChange}
+                  className={errors.firstName ? 'error' : ''}
+                />
+
+                {errors.firstName && <p className="errorMessage">Required field</p>}
+              </p>
+            </div>
+
+            <div>
+              <p><strong>Email:</strong></p>
+              <p><input name="email" type="email" value={email} onChange={this.handleOnChange} /></p>
+            </div>
+
+            <div>
+              <p><strong>Phone:</strong></p>
+              <p><input name="phone" type="tel" value={phone} onChange={this.handleOnChange} /></p>
+            </div>
+
             <p>
-              <input
-                name="lastName"
-                type="text"
-                value={lastName}
-                onChange={this.handleOnChange}
-                className={errors.firstName ? 'error' : ''}
-              />
-
-              {errors.firstName && <p className="errorMessage">Required field</p>}
+              <button type="submit">Save</button>
             </p>
-          </div>
-
-          <div>
-            <p><strong>Email:</strong></p>
-            <p><input name="email" type="email" value={email} onChange={this.handleOnChange} /></p>
-          </div>
-
-          <div>
-            <p><strong>Phone:</strong></p>
-            <p><input name="phone" type="tel" value={phone} onChange={this.handleOnChange} /></p>
-          </div>
-
-          <p>
-            <button type="submit">Save</button>
-          </p>
-        </form>
-      </div>
+          </form>
+        </div>
+      </>
     );
   }
 }

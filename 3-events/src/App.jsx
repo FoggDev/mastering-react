@@ -1,11 +1,5 @@
 import React from 'react';
-
-// Components
-// import Todo from './components/Todo';
-// import Coins from './components/Coins';
-// import Numbers from './components/Numbers';
-// import Xss from './components/Xss';
-import Person from './components/Person';
+import { element } from 'prop-types';
 
 // Shared Components
 import Header from './shared/components/layout/Header';
@@ -14,18 +8,20 @@ import Content from './shared/components/layout/Content';
 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
+const App = ({ children }) => (
+  <div className="App">
+    <Header />
 
-      <Content>
-        <Person />
-      </Content>
+    <Content>
+      {children}
+    </Content>
 
-      <Footer />
-    </div>
-  );
-}
+    <Footer />
+  </div>
+);
+
+App.propTypes = {
+  children: element.isRequired
+};
 
 export default App;
