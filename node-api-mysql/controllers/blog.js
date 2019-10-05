@@ -1,75 +1,64 @@
 import slugFn from 'slug';
-import Post from '../models/post';
+import Post, { db, queryType } from '../models/post';
 
 export function createPost(title, content, callback) {
-  const newPost = new Post({
-    title,
-    content
-  });
-
-  newPost.addAuthor('Carlos Santana');
-
-  newPost.save(error => {
-    if (error) {
-      console.log('ERROR:', error);
-      callback(error, true);
-    }
-
-    console.log('Post saved correctly');
-    callback(newPost);
-  });
+  db
+    .sync()
+    .then(() => {
+      Post.create({
+        title,
+        slug: title ? slugFn(title, { lower: 'on' }) : '',
+        content,
+        author: 'Carlos Santana',
+      }).then(insertedPost => {
+        console.log('INSERTED POST===', insertedPost);
+        callback(insertedPost.dataValues);
+      }).catch(error => {
+        console.log('CREATE ERROR', error);
+        callback(error, false);
+      });
+    });
 }
 
 export function updatePost(slug, title, content, callback) {
-  const updatedPost = {
-    title,
-    content,
-    slug: slugFn(title, { lower: 'on' })
-  };
-
-  Post.update({ slug }, updatedPost, (error, affected) => {
-    if (error) {
-      console.log('Update error:', error);
-      callback(error, true);
+  Post.update(
+    {
+      title,
+      slug: slugFn(title, { lower: 'on' }),
+      content
+    },
+    {
+      where: { slug }
     }
-
-    console.log('Post updated correctly');
-    callback(affected);
+  ).then(rowsUpdated => {
+    console.log('UPDATED', rowsUpdated);
+    callback(rowsUpdated);
+  }).catch(error => {
+    console.log('ERROR UPDATE', error);
+    callback(error, false);
   });
 }
 
 export function removePost(slug, callback) {
-  Post.remove({ slug }, error => {
-    if (error) {
-      console.log('Remove error:', error);
-      callback(error, true);
+  Post.destroy({
+    where: {
+      slug
     }
-
-    console.log('Post removed correctly');
-    callback(true);
-  });
+  }).then(rowDeleted => {
+    console.log('DELETED', rowDeleted);
+    callback(rowDeleted);
+  }).catch(error => {
+    console.log('ERROR DELETED', error);
+    callback(error, false);
+  })
 }
 
 export function findAllPosts(callback) {
-  Post.find({}, (error, posts) => {
-    if (error) {
-      console.log('No posts', posts);
-      return false;
-    }
-
-    console.log('All posts:', posts);
-    callback(posts);
-  });
+  db.query('SELECT * FROM posts', queryType)
+    .then(data => callback(data));
 }
 
 export function findBySlug(slug, callback) {
-  Post.find({ slug }, (error, post) => {
-    if (error) {
-      console.log('Not found:', error);
-      return false;
-    }
-
-    console.log('Found post:', post);
-    callback(post);
-  });
+  db.query(`SELECT * FROM posts WHERE slug = '${slug}'`, queryType)
+    .then(data => callback(data));
 }
