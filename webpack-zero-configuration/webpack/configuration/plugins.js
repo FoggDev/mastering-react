@@ -24,20 +24,24 @@ if (!isProduction) {
     new webpack.HotModuleReplacementPlugin()
   );
 } else {
-  new MiniCSSExtractPlugin({
-    filename: '[name].css',
-    chunkFilename: '[id].css',
-    ignoreOrder: false
-  }),
-  new CompressionPlugin({
-    filename: '[path].gz[query]',
-    algorithm: 'gzip',
-    test: /\.js$/,
-    compressionOptions: { level: 11 },
-    threshold: 10240,
-    minRatio: 0.8,
-    deleteOriginalAssets: false
-  });
+  plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new MiniCSSExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false
+    }),
+    new CompressionPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$/,
+      minRatio: 0.8
+    })
+  );
 }
 
 export default plugins;

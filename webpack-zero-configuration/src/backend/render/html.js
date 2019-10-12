@@ -9,7 +9,7 @@ export default function html(options) {
 
   if (isProduction) {
     path = '/app/';
-    link = `<link rel="stylesheet" href="${path}css/main.css"`;
+    link = `<link rel="stylesheet" href="${path}main.css"`;
   }
 
   return `
@@ -18,6 +18,7 @@ export default function html(options) {
       <head>
         <meta charset="utf-8" />
         <title>${title}</title>
+        ${link}
       </head>
 
       <body>

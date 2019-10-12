@@ -23,5 +23,4 @@ const webpackConfig = {
   resolve
 };
 
-console.log('WEBPACK', webpackConfig);
 export default webpackConfig;

@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
-import configureStore from './shared/redux/configureStore';
+import configureStore from '@configureStore';
 
-import App from './frontend/components/App';
+import App from '@components/App';
 
 const store = configureStore(window.initialState);
 

@@ -28,7 +28,6 @@ sassUse.push(
   }
 );
 
-console.log('sassUse', sassUse);
 export default {
   rules: [
     {

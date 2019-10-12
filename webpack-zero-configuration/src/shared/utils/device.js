@@ -9,3 +9,7 @@ export function isMobile(ua) {
 export function isDesktop(ua) {
   return !/mobile/i.tests(ua);
 }
+
+export function isFirefox(ua) {
+  return /Firefox/i.test(ua);
+}

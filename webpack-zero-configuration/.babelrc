@@ -9,5 +9,19 @@
         "react-hot-loader/babel"
       ]
     }
-  }
+  },
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "@frontend": "./src/frontend/",
+        "@components": "./src/frontend/components",
+        "@configureStore": "./src/shared/redux/configureStore.js",
+        "@reducers": "./src/shared/redux/reducers",
+        "@backend": "./src/backend/",
+        "@utils": "./src/shared/utils",
+        "@webpackConfig": "./webpack.config.babel.js"
+      }
+    }]
+  ]
 }
