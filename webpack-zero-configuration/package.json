@@ -4,8 +4,21 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@babel/node": "^7.6.3",
+    "@hot-loader/react-dom": "^16.10.2",
+    "compression-webpack-plugin": "^3.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.3",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-hot-loader": "^4.12.15",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "serialize-javascript": "^2.1.0",
+    "webpack-bundle-analyzer": "^3.5.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-notifier": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -13,21 +26,23 @@
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
     "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
+    "webpack": "^4.41.1",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2",
-    "webpack": "^4.41.1"
+    "webpack-dev-server": "^3.8.2"
   },
   "scripts": {
     "build-development": "webpack --mode development",
-    "build": "webpack --mode production",
-    "dev": "webpack-dev-server --mode development --open --port 3000",
-    "start": "NODE_ENV=production webpack-dev-server --mode production --open --port 3000"
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "clean": "rm -rf public/app",
+    "dev": "npm run clean && cross-env NODE_ENV=development nodemon src/backend --watch src/backend --exec babel-node",
+    "start": "npm run clean && npm run build && cross-env NODE_ENV=production babel-node src/backend"
   },
   "keywords": [],
   "author": "",
