@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/jest/setupFilesAfterEnv.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(scss)$": "identity-obj-proxy"
+    }
+  },
   "dependencies": {
     "@babel/node": "^7.6.3",
     "@hot-loader/react-dom": "^16.10.2",
@@ -29,7 +40,12 @@
     "babel-loader": "^8.0.6",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
+    "jsdom": "^15.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
@@ -43,7 +59,9 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "clean": "rm -rf public/app",
     "dev": "npm run clean && cross-env NODE_ENV=development nodemon src/backend --watch src/backend --exec babel-node",
-    "start": "npm run clean && npm run build && cross-env NODE_ENV=production babel-node src/backend"
+    "start": "npm run clean && npm run build && cross-env NODE_ENV=production babel-node src/backend",
+    "test": "node scripts/jest.js src --env=jsdom",
+    "coverage": "node scripts/jest.js src --coverage --env=jsdom"
   },
   "keywords": [],
   "author": "",

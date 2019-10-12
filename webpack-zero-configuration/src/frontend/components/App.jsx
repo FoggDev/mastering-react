@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Components
 import About from './About';
 import Home from './Home';
-console.log('APP');
+
 const App = () => (
   <Router>
     <Switch>
