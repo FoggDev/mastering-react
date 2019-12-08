@@ -27,7 +27,7 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
-    "serialize-javascript": "^2.1.0",
+    "serialize-javascript": "^2.1.1",
     "webpack-bundle-analyzer": "^3.5.2",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-notifier": "^1.8.0"
